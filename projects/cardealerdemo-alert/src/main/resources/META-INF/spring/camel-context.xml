@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+     Copyright 2005-2015 Red Hat, Inc.
+
+     Red Hat licenses this file to you under the Apache License, version
+     2.0 (the "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.
+
+-->
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	<bean id="amqConnectionFactory" class="io.fabric8.mq.core.MQConnectionFactory">
+		<property name="userName" value="clin@redhat.com"/>
+		<property name="password" value="sibyl821"/>
+	</bean>
+	<bean id="amq" class="io.fabric8.mq.camel.AMQComponent"></bean>
+	<bean id="geoLocationCheck" class="com.redhat.fis.dms.mockprocessor.GeoLocationCheck"></bean>
+	
+  
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+  
+  <route>
+    <from uri="amq:queue:TESTQUEUE"/>
+    <unmarshal>
+      <json library="Jackson"/>
+    </unmarshal>
+    <log message="Is the car closed to one of our store with geolocation: ${body.[geoloc]}"/>
+    <setHeader headerName="custName">
+      <simple>${body.[custName]}</simple>
+    </setHeader>
+    <bean ref="geoLocationCheck" method="isCloseToStore(${body.[geoloc]})"/>
+    <choice>
+      <when>
+        <simple>${body} == 2</simple>
+        <setBody>
+          <simple>{"msgType":"2","custName":"${headers.custName}","warningMsg":"is nearby our store!"}</simple>
+        </setBody>
+      </when>
+      <when>
+        <simple>${body} == 1</simple>
+        <setBody>
+          <simple>{"msgType":"1","custName":"${headers.custName}","warningMsg":"in the neighborhood"}</simple>
+        </setBody>
+      </when>
+      <otherwise>
+        <setBody>
+          <simple>{"msgType":"0","custName":"${headers.custName}","warningMsg":"not even close"}</simple>
+        </setBody>
+      </otherwise>
+    </choice>
+    <log message="${body}"/>
+    <to uri="websocket://demo?port=9292&amp;sendToAll=true"/>
+  </route>
+</camelContext>
+
+</beans>
