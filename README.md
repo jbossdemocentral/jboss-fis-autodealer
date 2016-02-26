@@ -62,7 +62,7 @@ Fuse Integration Service
 	 
 	  -We will open two pages, one that will feed GPS location data to our service, 
 	  http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/startGPSlocation.html
-	 -Then we can start receiving the alert from console, 
+	  -Then we can start receiving the alert from console, 
 	 http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/vehiclenearbyconsole.html
 	 ![gpsapp](pic/06-gpsapp.png)
 
