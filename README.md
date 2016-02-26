@@ -56,16 +56,16 @@ Fuse Integration Service
 		    -https://github.com/weimeilin79/jboss-fis-autodealerweb)
 		    -http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/sales/sales.html
 	  
-	  ![salesreport](pic/05-salesreport.png)
+	  
 	  
 	C. GPS service -Test with web application (installation instruction please visit:https://github.com/weimeilin79/jboss-fis-autodealerweb)
 	 
 	  -We will open two pages, one that will feed GPS location data to our service, 
-		http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/startGPSlocation.html
+	  http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/startGPSlocation.html
 	 -Then we can start receiving the alert from console, 
-		http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/vehiclenearbyconsole.html
-		
-		![gpsapp](pic/06-gpsapp.png)
+	 http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/vehiclenearbyconsole.html
+	 ![gpsapp](pic/06-gpsapp.png)
+
 		
 
 
