@@ -43,6 +43,8 @@
     ![PODs](pic/04-pods.png)
    
  - Testing services,
+
+	
 	A. Inventory service, are expose as Restful endpoint, to test it, simply access via a browser with following url
 	
 	 - Provide inventory status of the vehicle
