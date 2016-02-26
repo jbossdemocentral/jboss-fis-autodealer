@@ -64,8 +64,8 @@ Fuse Integration Service
 		http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/startGPSlocation.html
 	 -Then we can start receiving the alert from console, 
 		http://mydemo-phpdemo.cdk.10.1.2.2.xip.io/gps/vehiclenearbyconsole.html
-
-        ![gpsapp](pic/06-gpsapp.png)
+		
+		![gpsapp](pic/06-gpsapp.png)
 		
 
 
