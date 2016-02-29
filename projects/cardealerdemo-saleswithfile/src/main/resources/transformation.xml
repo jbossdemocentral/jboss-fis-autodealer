@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <wildcard>false</wildcard>
+    </configuration>
+    <mapping>
+        <class-a>oppxml.Oppo</class-a>
+        <class-b>com.redhat.fis.dms.model.Opportunity</class-b>
+        <field>
+            <a>discount</a>
+            <b>discount</b>
+        </field>
+        <field>
+            <a>custName</a>
+            <b>custName</b>
+        </field>
+        <field>
+            <a>openDate</a>
+            <b>opendate</b>
+        </field>
+        <field>
+            <a>phone</a>
+            <b>phone</b>
+        </field>
+        <field>
+            <a>stage</a>
+            <b>stage</b>
+        </field>
+        <field>
+            <a>type</a>
+            <b>type</b>
+        </field>
+        <field>
+            <a>vehicleId</a>
+            <b>vehicleId</b>
+        </field>
+    </mapping>
+</mappings>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+     Copyright 2005-2015 Red Hat, Inc.
+
+     Red Hat licenses this file to you under the Apache License, version
+     2.0 (the "License"); you may not use this file except in compliance
+     with the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+     implied.  See the License for the specific language governing
+     permissions and limitations under the License.
+
+-->
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+	
+	<bean id="opportunityGenerator" class="com.redhat.fis.dms.mockprocessor.OpportunityGenerator"></bean>
+	<bean id="dozer" class="org.apache.camel.converter.dozer.DozerTypeConverterLoader"></bean>
+  
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+  <dataFormats>
+    <jaxb contextPath="oppxml" id="oppxml"/>
+  </dataFormats>
+  <restConfiguration component="jetty" port="9191"/>
+  <rest path="/AutoDMS">
+    <get uri="/salesTracking">
+      <to uri="direct:salesTracking"/>
+    </get>
+  </rest>
+  <route id="salesTracking">
+    <from uri="direct:salesTracking"/>
+    <bean ref="opportunityGenerator" method="getAllList"/>
+    <marshal>
+      <json prettyPrint="true" library="Jackson"/>
+    </marshal>
+  </route>
+  <route id="inputReport">
+    <from uri="file:reportfolder"/>
+    <log message="${body}"/>
+    <split>
+      <xpath>/opportunities/oppo</xpath>
+      <to uri="dozer:opptrans?sourceModel=oppxml.Oppo&amp;targetModel=com.redhat.fis.dms.model.Opportunity&amp;unmarshalId=oppxml&amp;mappingFile=transformation.xml"/>
+      <bean ref="opportunityGenerator" method="addOpportunity(${body})"/>
+    </split>
+  </route>
+</camelContext>
+
+</beans>

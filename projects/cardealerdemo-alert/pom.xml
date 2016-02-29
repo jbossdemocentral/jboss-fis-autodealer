@@ -36,7 +36,6 @@
     <fabric8.annotations.service.apiman.io.serviceType>REST</fabric8.annotations.service.apiman.io.serviceType>
     <fabric8.annotations.service.apiman.io.descriptionPath>cxfcdi/swagger.json</fabric8.annotations.service.apiman.io.descriptionPath>
     <fabric8.annotations.service.apiman.io.descriptionType>SwaggerJSON</fabric8.annotations.service.apiman.io.descriptionType>-->
-
 	<fabric8.env.A_MQ_SERVICE_NAME>BROKER_AMQ_TCP</fabric8.env.A_MQ_SERVICE_NAME>
 	
     <fabric8.label.component>${project.artifactId}</fabric8.label.component>
@@ -241,6 +240,8 @@
                   <JAVA_MAIN_CLASS>org.apache.camel.spring.Main</JAVA_MAIN_CLASS>
                   <HTTP_PORT>${http.port}</HTTP_PORT>
                   <A_MQ_SERVICE_NAME>${fabric8.env.A_MQ_SERVICE_NAME}</A_MQ_SERVICE_NAME>
+                  <BROKER-AMQ-TCP_SERVICE_HOST>172.30.146.22</BROKER-AMQ-TCP_SERVICE_HOST>
+                  <BROKER-AMQ-TCP_SERVICE_PORT>61616</BROKER-AMQ-TCP_SERVICE_PORT>
                 </env>
                 <ports>
                   <port>${http.port}</port>

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>redhat.com</groupId>
-  <artifactId>gpsservice</artifactId>
+  <artifactId>salesreportfile-v2</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -28,7 +28,7 @@
     <docker.image>${fabric8.dockerUser}${project.artifactId}:${project.version}</docker.image>
     <docker.port.container.jolokia>8778</docker.port.container.jolokia>
 	
-	<fabric8.service.name>gpsservice</fabric8.service.name>
+	<fabric8.service.name>salesreportfile-v2</fabric8.service.name>
     <fabric8.service.port>80</fabric8.service.port>
     <fabric8.service.containerPort>${http.port}</fabric8.service.containerPort>
     
@@ -36,7 +36,8 @@
     <fabric8.annotations.service.apiman.io.serviceType>REST</fabric8.annotations.service.apiman.io.serviceType>
     <fabric8.annotations.service.apiman.io.descriptionPath>cxfcdi/swagger.json</fabric8.annotations.service.apiman.io.descriptionPath>
     <fabric8.annotations.service.apiman.io.descriptionType>SwaggerJSON</fabric8.annotations.service.apiman.io.descriptionType>-->
-	<fabric8.env.A_MQ_SERVICE_NAME>BROKER_AMQ_TCP</fabric8.env.A_MQ_SERVICE_NAME>
+
+	<fabric8.env.A_MQ_SERVICE_NAME>broker</fabric8.env.A_MQ_SERVICE_NAME>
 	
     <fabric8.label.component>${project.artifactId}</fabric8.label.component>
     <fabric8.label.container>java</fabric8.label.container>
@@ -99,26 +100,16 @@
       <artifactId>camel-jackson</artifactId>
     </dependency>
    	
+   	<!-- Dozer for transformation -->
    	<dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-websocket</artifactId>
+      <artifactId>camel-dozer</artifactId>
     </dependency>
-
-	<dependency>
-      <groupId>org.apache.activemq</groupId>
-      <artifactId>activemq-camel</artifactId>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-jaxb</artifactId>
     </dependency>
-    
-   	<dependency>
-      <groupId>io.fabric8.mq</groupId>
-      <artifactId>camel-amq</artifactId>
-    </dependency>
-   	
-   	<dependency>
-      <groupId>io.fabric8.mq</groupId>
-      <artifactId>mq-client</artifactId>
-    </dependency>  
-     
+	
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -239,6 +230,9 @@
                   <JAVA_LIB_DIR>/deployments/lib</JAVA_LIB_DIR>
                   <JAVA_MAIN_CLASS>org.apache.camel.spring.Main</JAVA_MAIN_CLASS>
                   <HTTP_PORT>${http.port}</HTTP_PORT>
+                  <A_MQ_SERVICE_NAME>${fabric8.env.A_MQ_SERVICE_NAME}</A_MQ_SERVICE_NAME>
+                  <BROKER_SERVICE_HOST>172.30.125.187</BROKER_SERVICE_HOST>
+                  <BROKER_SERVICE_PORT>61616</BROKER_SERVICE_PORT>
                 </env>
                 <ports>
                   <port>${http.port}</port>

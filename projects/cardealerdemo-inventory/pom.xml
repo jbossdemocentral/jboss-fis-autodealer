@@ -332,7 +332,7 @@
         <fabric8.recreate>true</fabric8.recreate>
       </properties>
       <build>
-        <defaultGoal>clean install docker:build fabric8:json</defaultGoal>
+        <defaultGoal>clean install docker:build fabric8:json fabric8:apply</defaultGoal>
       </build>
     </profile>
   </profiles>
