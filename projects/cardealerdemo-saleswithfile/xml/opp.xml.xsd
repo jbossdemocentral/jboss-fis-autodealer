@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="oppo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="custName"/>
+        <xs:element type="xs:byte" name="discount"/>
+        <xs:element type="xs:string" name="phone"/>
+        <xs:element type="xs:string" name="type"/>
+        <xs:element type="xs:string" name="stage"/>
+        <xs:element type="xs:string" name="vehicleId"/>
+        <xs:element type="xs:string" name="openDate"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
