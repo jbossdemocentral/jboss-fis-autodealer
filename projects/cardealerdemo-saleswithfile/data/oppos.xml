@@ -1,0 +1,20 @@
+<opportunities>
+<oppo>
+	<custName>ABC</custName>
+	<discount>10</discount>
+	<phone>0987654321</phone>
+	<type>Won</type>
+	<stage>Closed</stage>
+	<vehicleId>vno06</vehicleId>
+	<openDate>2016-04-07</openDate>
+</oppo>
+<oppo>
+	<custName>DEF</custName>
+	<discount>20</discount>
+	<phone>0337654321</phone>
+	<type>Open</type>
+	<stage>Quote</stage>
+	<vehicleId>vno01</vehicleId>
+	<openDate>2016-04-27</openDate>
+</oppo>
+</opportunities>
