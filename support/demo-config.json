@@ -1,0 +1,18 @@
+{
+  "name":"Auto Dealership Management System",
+  "summary":"Fuse Integration Service, building Fuse integration application on OpenShift",
+  "author":"Christina Lin",
+  "categories":["fuse","openshift"],
+  "level":"Beginner",
+  "published":true,
+  "prerequisites":"Java 7&8 , Maven 3.1.1 - 3.2.4 , OpenShift ",
+  "targetProduct":"Fuse on OpenShift",
+  "productVersion":"JBoss Fuse 6.2.1",
+  "technologies": ["JBoss Fuse"],
+  "links": [ 
+    {
+      "name":"Code",
+      "url":"https://github.com/jbossdemocentral/jboss-fis-autodealer"
+    }
+  ]
+}
