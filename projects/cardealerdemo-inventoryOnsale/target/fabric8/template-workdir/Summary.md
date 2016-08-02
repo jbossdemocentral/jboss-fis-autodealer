@@ -1,1 +1,0 @@
-Camel route using Spring XML in a standalone Java container
